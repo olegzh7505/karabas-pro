@@ -96,7 +96,7 @@ begin
 	-- rx
 	process (CLK, SA)
 	begin 
-		if falling_edge(CLK) then
+		if rising_edge(CLK) then
 			case SA is 
 				when "00" => 
 					rx_buf <= SD(7 downto 0); -- rx
@@ -105,8 +105,7 @@ begin
 					bus_a(7 downto 0) <= SD(7 downto 0);
 				when "10" =>
 					bus_di <= SD(7 downto 0);
-				when "11" =>
-					bus_di <= bus_di;
+				when others => null;
 			end case;
 		end if;
 	end process;
